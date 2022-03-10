@@ -1,7 +1,8 @@
 //use std::env;
 //mod print;
 //mod variables;
-mod types;
+//mod types;
+mod strings;
 
 fn main() {
     let x: i32;
@@ -10,5 +11,6 @@ fn main() {
     println!("Where x = {}", x);
     //print::run();
     //variables::run();
-    types::run();
+    //types::run();
+    strings::run();
 }
