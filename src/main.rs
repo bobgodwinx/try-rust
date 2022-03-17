@@ -2,7 +2,8 @@
 //mod print;
 //mod variables;
 //mod types;
-mod strings;
+//mod strings;
+mod tuples;
 
 fn main() {
     let x: i32;
@@ -12,5 +13,6 @@ fn main() {
     //print::run();
     //variables::run();
     //types::run();
-    strings::run();
+    //strings::run();
+    tuples::run();
 }
