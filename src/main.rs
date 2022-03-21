@@ -8,14 +8,14 @@
 //mod vectors;
 //mod conditionals;
 //mod loops;
-mod functions;
+//mod functions;
+mod pointers;
 
 
+const VERSION: &str = env!("CARGO_PKG_VERSION");
 fn main() {
-    let x: i32;
-    x = 4;
+    println!("Welcome to Rust:  {}", VERSION);
     println!("Hello, world! hello main.rs file");
-    println!("Where x = {}", x);
     //print::run();
     //variables::run();
     //types::run();
@@ -25,5 +25,6 @@ fn main() {
     //vectors::run();
     //conditionals::run();
     //loops::run();
-    functions::run();
+    //functions::run();
+    pointers::run();
 }
