@@ -9,7 +9,9 @@
 //mod conditionals;
 //mod loops;
 //mod functions;
-mod pointers;
+//mod pointers;
+mod structs;
+
 
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -26,5 +28,6 @@ fn main() {
     //conditionals::run();
     //loops::run();
     //functions::run();
-    pointers::run();
+    //pointers::run();
+    structs::run();
 }
