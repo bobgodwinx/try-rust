@@ -12,7 +12,9 @@
 //mod pointers;
 //mod structs;
 //mod enums;
-mod cli;
+//mod cli;
+mod ownership;
+//mod clone;
 
 
 
@@ -34,5 +36,7 @@ fn main() {
     //pointers::run();
     //structs::run();
     //enums::run();
-    cli::run();
+    //cli::run();
+    ownership::run();
+    //clone::run();
 }
