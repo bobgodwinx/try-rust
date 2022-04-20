@@ -1,3 +1,5 @@
+// - There are two ways to clone a property 
+// - The first is to actaully 
 
 #[derive(Debug)]
 struct Address {
