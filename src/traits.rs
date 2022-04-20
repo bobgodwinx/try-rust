@@ -52,4 +52,20 @@ pub fn run() {
     // - you can see this as `Swift` extensions... literally the same thing.
     println!("Number of Employee: {}", company.count_employee());
     println!("call_clount {} : ", company.call_count);
+    println!("has_employee_named {}: ", company.has_employee_named(String::from("Bob")));
+}
+
+// - It is actually a cool feature to have 
+// - implementation outside the body of a 
+// - struct. You can customise what you need 
+// - at any where in the code because you are 
+// - not overriding anything but composing your needs 
+// - kudos to `Rust` for this pattern.
+impl Company {
+    pub fn has_employee_named(&self, name: String) -> bool {
+       if let Some(_str) = self.employees.iter().find(|&s| *s.first_name == name) {
+           return  true;
+       }
+       return  false;
+    }
 }
