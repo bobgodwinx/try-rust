@@ -20,7 +20,7 @@ mod model {
     pub mod employee;
     pub mod company;
 }
-//pub use crate::employee::Employee;
+mod generics;
 
 
 
@@ -45,7 +45,8 @@ fn main() {
     //cli::run();
     //ownership::run();
     //clone::run();
-    traits::run();
+    //traits::run();
     //let employee_01 = Employee { first_name: String::from("Bob"), last_name: String::from("ob
     //i"), age: 23};
+    generics::run();
 }
