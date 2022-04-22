@@ -16,4 +16,36 @@ pub fn run() {
 
     println!("a = {:?}", &a);
     println!("b = {:?}", &b);
+
+    // - Generics give you a ton of flexibity 
+    // - Code reduction 
+    // - Zero additional run-time costs 
+    // - Rust always infers the explicit type at compile time
+
+    // - Here a simple enum with associated type
+    // - one thing to notice is that in `Rust`
+    // - the `case` keyword is not used in `enums` 
+    let optionA = Options::OptionA(3.4);
+    match optionA {
+        Options::OptionA(a) => println!("a is {}", a),
+        Options::OptionB(b) => println!("b is {}", b),
+    }
+
+    // - A more complex type 
+    let optionB = Options::OptionB(vec![1, 2]);
+    match optionB {
+        Options::OptionA(_) => { 
+            println!("LOL")
+        },
+        Options::OptionB(vec) => {
+            for x in vec {
+                println!(" element = {}", x);
+            }
+        }
+    }
+}
+
+enum Options<T> {
+    OptionA(T),
+    OptionB(T),
 }
