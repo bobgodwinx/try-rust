@@ -52,6 +52,9 @@ pub fn run() {
 
     let c_gen_fn = c_generic_func(3, 3);
     println!("c_gen_fn {}", c_gen_fn);
+
+    let d_gen_fn = d_generic_func(4, 1);
+    println!("d_gen_fn {}", d_gen_fn);
 }
 
 enum Options<T> {
@@ -74,8 +77,18 @@ fn b_generic_func<T: std::ops::Add<Output=T> + std::ops::Sub<Output=T>>(input_a:
 }
 
 // - That's quite nasty of `Rust` 
-// - As you can notice you use a `+` sign to add more and more `Constraints`
+// - As you can notice you use a `+` sign to add more and more `Constraints` + more + more
 fn c_generic_func<T: std::ops::Add<Output=T> + std::ops::Sub<Output=T> + std::fmt::Debug>(input_a: T, input_b: T) -> T {
+    println!("input_a {:?}", input_a);
+    println!("input_b {:?}", input_b);
+    input_a - input_b
+}
+
+// - But we can use `where` just like in `Swift` 
+// - to arrange the code better.. So here I am beginning 
+// - to ask myself how much did `Swift` copy `Rust` ? Yeah 🙈 let's use `where`
+fn d_generic_func<T>(input_a: T, input_b: T) -> T 
+where T: std::ops::Add<Output=T> + std::ops::Sub<Output=T> + std::fmt::Debug {
     println!("input_a {:?}", input_a);
     println!("input_b {:?}", input_b);
     input_a - input_b
