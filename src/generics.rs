@@ -43,9 +43,21 @@ pub fn run() {
             }
         }
     }
+
+    let a_gen_fn = a_generic_func(3, 4);
+    println!(" a_generic_func produces {}", a_gen_fn);
 }
 
 enum Options<T> {
     OptionA(T),
     OptionB(T),
+}
+
+// - Here `Rust` gets a little bit hairy with 
+// - Generic `Constraints`.. in the example below
+// - We are stating that `T` conforms to `Add`
+// - that our `Output` is a `Type` of `T`
+// - `Swift` has a better syntax in this case.. 
+fn a_generic_func<T: std::ops::Add<Output = T>>(input_a: T, input_b: T) -> T {
+    input_a + input_b
 }
