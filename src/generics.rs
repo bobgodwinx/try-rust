@@ -61,3 +61,8 @@ enum Options<T> {
 fn a_generic_func<T: std::ops::Add<Output = T>>(input_a: T, input_b: T) -> T {
     input_a + input_b
 }
+
+fn b_generic_func<T: std::ops::Add, U: T>(input_a: T, input_b: T) -> U {
+    input_a + input_b
+}
+
