@@ -55,6 +55,19 @@ pub fn run() {
 
     let d_gen_fn = d_generic_func(4, 1);
     println!("d_gen_fn {}", d_gen_fn);
+
+    let a_bob = People {
+        name: "Bob",
+        other_name: "another",
+    };
+
+    let my_string1 = a_bob.give_me_a_string("hello", " what's up?");
+    println!("BobCustomTrait in action {}", my_string1);
+    let my_string2 = do_some_work1(&a_bob);
+    let my_string3 = do_some_work2(&a_bob);
+    println!("BobCustomTrait in action {}", my_string2);
+    println!("BobCustomTrait in action {}", my_string3);
+
 }
 
 enum Options<T> {
@@ -92,4 +105,34 @@ where T: std::ops::Add<Output=T> + std::ops::Sub<Output=T> + std::fmt::Debug {
     println!("input_a {:?}", input_a);
     println!("input_b {:?}", input_b);
     input_a - input_b
+}
+
+// - Going with traits
+// - You should see `traits` as `Swift` `protocols`
+// - It's just another way of saying characteristics
+// - that are associated to an object
+trait  BobCustomTrait {
+    fn give_me_a_string(&self, a: &str, b: &str) -> String;
+}
+// - This is a Generic `T` but `Constrained` with the `where` clause
+fn do_some_work1<T>(some_object: &T) -> String 
+where T: BobCustomTrait {
+    some_object.give_me_a_string("d", "q")
+}
+// - Here  `do_some_work2` just recieves a `BobCustomTrait`
+fn do_some_work2(some_object: &dyn BobCustomTrait) -> String {
+    some_object.give_me_a_string("c", "d")
+}
+
+struct People {
+    name: &'static str,
+    other_name: &'static str,
+}
+// - Implementation of `BobCustomTrait` for `People` struct
+// - in `Swift` terms `People` conforming to `BobCustomTrait`
+impl BobCustomTrait for People {
+    fn give_me_a_string(&self, a: &str, b: &str) -> String {
+    let value = format!("{} {} {} {}", a, b, self.name, self.other_name);
+    return String::from(value);
+    }
 }
