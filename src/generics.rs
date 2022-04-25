@@ -68,6 +68,13 @@ pub fn run() {
     println!("BobCustomTrait in action {}", my_string2);
     println!("BobCustomTrait in action {}", my_string3);
 
+    let a_pupil = Pupils {
+        name_t: "bob",
+        age_u: 20,
+    };
+    // - now let's log the generic traits 
+    a_pupil.log_variables();
+
 }
 
 enum Options<T> {
@@ -132,7 +139,25 @@ struct People {
 // - in `Swift` terms `People` conforming to `BobCustomTrait`
 impl BobCustomTrait for People {
     fn give_me_a_string(&self, a: &str, b: &str) -> String {
-    let value = format!("{} {} {} {}", a, b, self.name, self.other_name);
+    let value = format!("{} {} {} {}", a, b, self.name, self.other_name); 
     return String::from(value);
     }
+}
+
+// - Now let's takes this further to Generic Traits 
+
+struct Pupils<T, U> {
+    name_t: T,
+    age_u: U,
+}
+// - Here `Rust` will only allow you to use 
+// - `Debug` Traits on the implementation but 
+// - not on the struct it's self. Which is kind strange
+impl <T, U> Pupils<T, U> 
+where T: std::fmt::Debug, 
+      U: std::fmt::Debug  { 
+    fn log_variables(&self) {
+        println!("{:?}, {:?}", self.name_t, self.age_u);
+    }
+    
 }
