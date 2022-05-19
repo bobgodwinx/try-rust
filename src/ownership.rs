@@ -1,3 +1,5 @@
+use std::{ops::{DerefMut, Deref}, clone};
+
 #[allow(unused_variables)] //This is to highlight warnings 
 
 pub fn run() {
@@ -63,18 +65,31 @@ pub fn run() {
 
     // - Scope based memory cleanup
     let stack_f64: f64 = 1.0;
-    let mut heap_f64: Box<f64> = Box::new(1.0);
     // - `stack_do_some_thing` will copy `stack_f64` into `param`
     // - so it a whole new variable 
     stack_do_some_thing(stack_f64);
     println!("Original `stack_f64` {}", stack_f64);
+
+
+    // Even though I declared this as a `mut`
+    // the `heap_do_some_thing` function cannot
+    // change because it is passed into it as
+    // reference. So you cannot do anything 100% 
+    // guarranteed!!!
+    let mut heap_f64: Box<f64> = Box::new(6.0);
 
     // - The `heap_do_some_thing` BORROWS `heap_f64`
     // - `Rust` makes sure you cannot do anything stupid
     // - After the method finishes runing it will return OWNERSHIP back to the original OWNER
     // - There can be One and Only one, OWNER of a memory at a time. 
     heap_do_some_thing(&heap_f64);
-    println!("updated `heap_f64` {}", heap_f64);
+    println!("Pretty same value not updated `heap_f64` {}", heap_f64);
+
+    // to be able to mutate the value you 
+    // pass it as a non reference. 
+    // meaning derefering it
+    heap_f64 = heap_do_some_thing_change_param(heap_f64);
+    println!("Now the value has been changed and returned back to us: {}", heap_f64); 
 
     // - Strings are always in the heap 
     let some_string: String = String::from("Hello");
@@ -120,8 +135,25 @@ pub fn run() {
  }
 
  fn heap_do_some_thing(mut param: &Box<f64>) {
+     // this how you reference the rawValue 
+     // from the boxed property with `*`
+    //let unboxed_param: f64 = *param; //error
+    //let calculate = unboxed_param * 5.0; // error 
+    //param = Box::new(calculate); // error
+    
     println!("In heap with {}", param);
  }
+
+ fn heap_do_some_thing_change_param(mut param: Box<f64>) -> Box<f64> {
+    // this how you reference the rawValue 
+    // from the boxed property with `*`
+    let unboxed_param: f64 = *param; // dereferenced
+   let calculate = unboxed_param * 5.0;
+   param = Box::new(calculate); // works because param was dereferenced
+   
+   println!("In heap with updated and dereferenced param: {}", param);
+   return param
+}
 
  fn some_string_str(param_a: &String, param_b: &str) {
      println!("some_string_str: {} {}", param_a, param_b);

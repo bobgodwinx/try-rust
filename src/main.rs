@@ -13,7 +13,7 @@
 //mod structs;
 //mod enums;
 //mod cli;
-//mod ownership;
+mod ownership;
 //mod clone;
 mod traits;
 mod model { 
@@ -43,10 +43,10 @@ fn main() {
     //structs::run();
     //enums::run();
     //cli::run();
-    //ownership::run();
+    ownership::run();
     //clone::run();
     //traits::run();
     //let employee_01 = Employee { first_name: String::from("Bob"), last_name: String::from("ob
     //i"), age: 23};
-    generics::run();
+    //generics::run();
 }

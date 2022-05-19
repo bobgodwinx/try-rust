@@ -5,7 +5,7 @@ use core::num;
 pub fn run() {
     println!("Welcome to arrays");
 
-    let nums: [i32; 5] = [0, 1, 2, 3, 4];
+    let nums: [i32; 5] = [0, 1, 2, 3, 4]; //fixed size array and `Rust`
     // Print all
     println!("nums: {:?}", nums);
     // Get a single value
