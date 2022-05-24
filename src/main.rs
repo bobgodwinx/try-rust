@@ -21,6 +21,7 @@ mod model {
     pub mod company;
 }
 mod generics;
+mod lifetimes;
 
 
 
@@ -43,10 +44,11 @@ fn main() {
     //structs::run();
     //enums::run();
     //cli::run();
-    ownership::run();
+    //ownership::run();
     //clone::run();
     //traits::run();
     //let employee_01 = Employee { first_name: String::from("Bob"), last_name: String::from("ob
     //i"), age: 23};
     //generics::run();
+    lifetimes::run();
 }
