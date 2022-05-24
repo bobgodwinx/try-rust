@@ -22,7 +22,7 @@ impl Clone for Address {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 struct City {
     name: String, 
     country: String
