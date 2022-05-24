@@ -65,6 +65,7 @@ fn get_string_ref<'a, 'b>(param_1: &'a str, param_2: &'b str) -> &'a str {
 // have to use `'a` as follows `param_2: &'a str` eith of the solution works!
 // Lifetime is just a way `Rust` protects our reference types from accessing 
 // garbage memory.  
+#[allow(dead_code)] // don't do this in production I am just showing how to add macros
 fn get_string_ref<'a, 'b: 'a>(param_1: &'a str, param_2: &'b str) -> &'a str {
     if param_1 == "hello world" {
         return param_1;
@@ -77,7 +78,9 @@ fn get_string_ref<'a, 'b: 'a>(param_1: &'a str, param_2: &'b str) -> &'a str {
 // This is how you add lifetime to a `struct` that has reference types 
 #[derive(Debug)]
 struct School<'a> {
+    #[allow(dead_code)] // don't do this in production I am just showing how to add macros
     address: &'a str,
+    #[allow(dead_code)] // don't do this in production I am just showing how to add macros
     city: &'a str
 }
 // `impl` is quite weird and people in the `Rust` community voiced
